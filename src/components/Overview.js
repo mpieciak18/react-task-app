@@ -15,7 +15,9 @@ class Overview extends React.Component {
                 {this.props.tasks.map((task) => {
                     return (
                     <li key={task.id}>
-                        <div id={task.id} onClick={this.deleteTask}>✖</div>
+                        <div 
+                            id={task.id}
+                            onClick={() => this.deleteTask()}>✖</div>
                         {task.num}: {task.text}
                     </li>
                     );

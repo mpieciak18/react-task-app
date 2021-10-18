@@ -75,7 +75,7 @@ class App extends React.Component {
           />
           <button type='submit'>Add Task</button>
         </form>
-        <Overview tasks={tasks} deleteTask={() => this.deleteTask}/>
+        <Overview tasks={tasks} deleteTask={(e) => this.deleteTask(e)}/>
       </div>
     );
   }
