@@ -44,7 +44,7 @@ class App extends React.Component {
     let newTasks = [];
     for (let i = 0; i < this.state.tasks.length; i++) {
       const task = this.state.tasks[i];
-      if (task.key == deletedId) {
+      if (task.id == deletedId) {
         continue
       } else {
         newTasks = [...newTasks, task]
@@ -75,7 +75,7 @@ class App extends React.Component {
           />
           <button type='submit'>Add Task</button>
         </form>
-        <Overview tasks={tasks} deleteTask={(e) => this.deleteTask(e)}/>
+        <Overview tasks={tasks} deleteTask={this.deleteTask}/>
       </div>
     );
   }
