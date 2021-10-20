@@ -10,7 +10,8 @@ class App extends React.Component {
       task: {
         num: 1, 
         text: '',
-        id: uniqid()
+        id: uniqid(),
+        beingEdited: false
       },
       tasks: []
     };
@@ -35,13 +36,60 @@ class App extends React.Component {
       task: {
         num: oldNum + 1,
         text: '',
-        id: uniqid()
+        id: uniqid(),
+        beingEdited: false
       }
     });
   };
 
+  startEdit = (e) => {
+    const editedTaskNum = e.target.parentNode.id
+    const index = editedTaskNum - 1
+    const task = this.state.tasks[index]
+
+    task.beingEdited = true
+
+    const oldTasks = this.state.tasks
+    const newTasks = [...oldTasks.slice(0, index), task, ...oldTasks.slice(index + 1)]
+
+    this.setState({
+      tasks: newTasks
+    });
+  };
+
+  handleEdit = (e) => {
+    const editedTaskNum = Number(e.target.parentNode.id)
+    const index = editedTaskNum - 1
+    const task = this.state.tasks[index]
+
+    task.text = e.target.value
+
+    const oldTasks = this.state.tasks
+    const newTasks = [...oldTasks.slice(0, index), task, ...oldTasks.slice(index + 1)]
+
+    this.setState({
+      tasks: newTasks
+    });
+  }
+
+  onSubmitEdit = (e) => {
+    e.preventDefault();
+    const editedTaskNum = Number(e.target.id)
+    const index = editedTaskNum - 1
+    const task = this.state.tasks[index]
+
+    task.beingEdited = false
+
+    const oldTasks = this.state.tasks
+    const newTasks = [...oldTasks.slice(0, index), task, ...oldTasks.slice(index + 1)]
+
+    this.setState({
+      tasks: newTasks
+    });
+  };
+
   deleteTask = (e) => {
-    const deletedId = e.target.parentNode.id;
+    const deletedId = e.target.parentNode.parentNode.id;
     let newTasks = [];
 
     // create new array of tasks (minus deleted task)
@@ -85,21 +133,25 @@ class App extends React.Component {
   }
 
   render() {
-    const { task, tasks } = this.state;
-
     return (
       <div>
         <form onSubmit={this.onSubmitTask}>
           <label htmlFor='taskInput'>Enter task</label>
           <input
             onChange={this.handleChange}
-            value={task.text}
+            value={this.state.task.text}
             type='text'
             id='taskInput'
           />
           <button type='submit'>Add Task</button>
         </form>
-        <Overview tasks={tasks} deleteTask={this.deleteTask}/>
+        <Overview 
+          tasks={this.state.tasks}
+          deleteTask={this.deleteTask}
+          startEdit={this.startEdit}
+          handleEdit={this.handleEdit}
+          onSubmitEdit={this.onSubmitEdit}
+        />
       </div>
     );
   }
