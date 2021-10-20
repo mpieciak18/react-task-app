@@ -14,9 +14,14 @@ class Overview extends React.Component {
             <ul>
                 {this.props.tasks.map((task) => {
                     return (
-                    <li key={task.id}>
-                        <div id={task.id} onClick={this.deleteTask}>✖</div>
+                    <li key={task.id} id={task.id}>
+                        <div onClick={this.deleteTask}>✖</div>
+                        {/* if (condition satisfied) render '{task.num}: {task.text}' */}
+                        {/* else render '<input />' */}
                         {task.num}: {task.text}
+                        {/* if (condition satisfied) set button type to button */}
+                        {/* else set button type to submit' */}
+                        <button></button>
                     </li>
                     );
                 })}

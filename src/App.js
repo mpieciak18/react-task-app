@@ -29,35 +29,59 @@ class App extends React.Component {
   onSubmitTask = (e) => {
     e.preventDefault();
     const oldNum = this.state.task.num;
+
     this.setState({
       tasks: [...this.state.tasks, this.state.task],
       task: {
         num: oldNum + 1,
         text: '',
         id: uniqid()
-      },
+      }
     });
   };
 
   deleteTask = (e) => {
-    const deletedId = e.target.id;
+    const deletedId = e.target.parentNode.id;
     let newTasks = [];
+
+    // create new array of tasks (minus deleted task)
+    // and update each task's "num" property
     for (let i = 0; i < this.state.tasks.length; i++) {
       const task = this.state.tasks[i];
+
+      if (newTasks.length == 0) {
+        task.num = 1
+      } else {
+        task.num = newTasks[newTasks.length - 1].num + 1
+      };
+
       if (task.id == deletedId) {
         continue
       } else {
-        newTasks = [...newTasks, task]
+        newTasks = newTasks.concat(task);
       }
     };
-    this.setState({
-      tasks: newTasks,
-      task: {
-        num: this.state.task.num,
-        text: this.state.task.text,
-        id: this.state.task.id
-      },
-    });
+
+    // update state
+    if (newTasks.length == 0) {
+      this.setState({
+        tasks: [],
+        task: {
+          num: 1,
+          text: this.state.task.text,
+          id: this.state.task.id
+        }
+      });
+    } else {
+      this.setState({
+        tasks: newTasks,
+        task: {
+          num: newTasks[newTasks.length - 1].num + 1,
+          text: this.state.task.text,
+          id: this.state.task.id
+        }
+      });
+    };
   }
 
   render() {
