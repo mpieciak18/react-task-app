@@ -1,6 +1,7 @@
 import React from "react";
 import uniqid from 'uniqid';
 import Overview from './components/Overview'
+import './App.css'
 
 class App extends React.Component {
   constructor() {
@@ -134,16 +135,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onSubmitTask}>
-          <label htmlFor='taskInput'>Enter task</label>
+      <div id='main'>
+        <h1>React Task App</h1>
+        <h2>A simple task tracker, built in React</h2>
+        <form id='inputBar' onSubmit={this.onSubmitTask}>
+          <label htmlFor='taskInput'>Enter task:</label>
           <input
             onChange={this.handleChange}
             value={this.state.task.text}
             type='text'
             id='taskInput'
           />
-          <button type='submit'>Add Task</button>
+          <button id='addTaskButton' type='submit'>Add Task</button>
         </form>
         <Overview 
           tasks={this.state.tasks}

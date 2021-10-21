@@ -1,4 +1,5 @@
 import React from 'react';
+import './Overview.css'
 
 class Overview extends React.Component {
     constructor(props) {
@@ -20,24 +21,26 @@ class Overview extends React.Component {
     onSubmitEdit = (e) => {
         this.props.onSubmitEdit(e)
     }
+    /* margin-top: 30px; */
 
     render() {
         return (
-            <ul>
+            <ul id='unorderedList'>
                 {this.props.tasks.map((task) => {
-                    let listItem;
+                    let listItemContents;
 
                     if (task.beingEdited != true) {
-                        listItem = (
-                            <div id={task.num}>
-                                <div onClick={this.deleteTask}>✖</div>
-                                <div>{task.num}: {task.text}</div>
-                                <button type='button' onClick={this.startEdit}>edit</button>
+                        listItemContents = (
+                            <div id={task.num} className='listItemContents'>
+                                <div className='xButton' onClick={this.deleteTask}>✕</div>
+                                <div className='taskNum'>{task.num}:</div>
+                                <div className='taskText'>{task.text}</div>
+                                <button className='editButton' type='button' onClick={this.startEdit}>edit</button>
                             </div>
                         )    
                     } else {
-                        listItem = (
-                            <form id={task.num} onSubmit={this.onSubmitEdit}>
+                        listItemContents = (
+                            <form id={task.num} className='listItemContents' onSubmit={this.onSubmitEdit}>
                                 <div onClick={this.deleteTask}>✖</div>
                                 <input value={task.text} type='text' onChange={this.handleEdit}></input>
                                 <button type='submit'>submit</button>
@@ -46,8 +49,8 @@ class Overview extends React.Component {
                     }                
 
                     return (
-                    <li key={task.id} id={task.id}>
-                        {listItem}
+                    <li key={task.id} id={task.id} className='listItem'>
+                        {listItemContents}
                     </li>
                     );
                 })}

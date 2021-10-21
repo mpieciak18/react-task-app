@@ -1,0 +1,20 @@
+#unorderedList {
+    padding-left: 10px;
+}
+.listItemContents {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+}
+.listItem {
+    list-style-type: none;
+}
+.taskNum {
+    margin: 0px 7px 0px 14px;
+}
+.taskText {
+    margin: 0px 14px 0px 0px;
+}
+.editButton {
+    margin-left: auto;
+}
