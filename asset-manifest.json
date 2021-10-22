@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-task-app/static/css/main.e2e54e45.chunk.css",
+    "main.js": "/react-task-app/static/js/main.7f283a36.chunk.js",
+    "main.js.map": "/react-task-app/static/js/main.7f283a36.chunk.js.map",
+    "runtime-main.js": "/react-task-app/static/js/runtime-main.40ff5863.js",
+    "runtime-main.js.map": "/react-task-app/static/js/runtime-main.40ff5863.js.map",
+    "static/js/2.a4876b6b.chunk.js": "/react-task-app/static/js/2.a4876b6b.chunk.js",
+    "static/js/2.a4876b6b.chunk.js.map": "/react-task-app/static/js/2.a4876b6b.chunk.js.map",
+    "index.html": "/react-task-app/index.html",
+    "static/css/main.e2e54e45.chunk.css.map": "/react-task-app/static/css/main.e2e54e45.chunk.css.map",
+    "static/js/2.a4876b6b.chunk.js.LICENSE.txt": "/react-task-app/static/js/2.a4876b6b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.40ff5863.js",
+    "static/js/2.a4876b6b.chunk.js",
+    "static/css/main.e2e54e45.chunk.css",
+    "static/js/main.7f283a36.chunk.js"
+  ]
+}
